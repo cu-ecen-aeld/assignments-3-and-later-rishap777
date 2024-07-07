@@ -5,13 +5,12 @@ project(aesd-assignments)
 # Students can also add paths to their own test files using a ../ prefix to
 # reference this working directory
 set(AUTOTEST_SOURCES
+    test/assignment1/Test_hello.c
+    test/assignment1/Test_assignment_validate.c
     ../student-test/assignment1/Test_validate_username.c
 )
 # A list of all files containing test code that is used for assignment validation
 set(TESTED_SOURCE
     ../examples/autotest-validate/autotest-validate.c
-    ../finder-app/finder.sh
-    ../finder-app/writer.sh
-    ../finder-app/finder-test.sh
 )
 add_subdirectory(assignment-autotest)
