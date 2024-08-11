@@ -17,6 +17,12 @@ bool do_system(const char *cmd)
  *   or false() if it returned a failure
 */
 
+	int ret = system(cmd);
+	if(ret != 0){
+		perror("do_system : system api failed to execute process");
+		return false;
+	}
+
     return true;
 }
 
@@ -48,6 +54,8 @@ bool do_exec(int count, ...)
     // this line is to avoid a compile warning before your implementation is complete
     // and may be removed
     command[count] = command[count];
+    
+    va_end(args);
 
 /*
  * TODO:
@@ -58,10 +66,38 @@ bool do_exec(int count, ...)
  *   as second argument to the execv() command.
  *
 */
+	pid_t pid = fork();
 
-    va_end(args);
-
-    return true;
+	if(pid == -1){
+		perror("do_exec : Fork Failed");
+		return false; 
+	}
+	
+	if(pid == 0){
+		printf("child created \n");
+		int ret = execv(command[0],command);
+		if(ret == -1){
+			perror("do_exec : execv Failed");
+			exit(EXIT_FAILURE);
+			}
+	}
+	
+	if(pid > 0){
+		int status;
+		printf("Inside Parent \n");
+		wait(&status);
+		
+		if(WIFEXITED(status)){
+		
+			if(WEXITSTATUS(status) == 0){
+				return true;
+			}else{
+				printf("status of waitpid %d \n",WEXITSTATUS(status));
+				return false;
+			}
+		}
+	}
+	return false;
 }
 
 /**
@@ -83,7 +119,8 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
     // this line is to avoid a compile warning before your implementation is complete
     // and may be removed
     command[count] = command[count];
-
+	
+	va_end(args);
 
 /*
  * TODO
@@ -92,8 +129,56 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
  *   The rest of the behaviour is same as do_exec()
  *
 */
+	
+	int fd = open(outputfile,O_WRONLY|O_CREAT,0666);
+	
+	if(fd == -1){
+		perror("do_exec_redirect : Opening file Failed");
+		return false;
+	}
+		
+	fflush(stdout);
+	
+	pid_t pid = fork();
 
-    va_end(args);
+	if(pid == -1){
+		perror("do_exec_redirect : Fork Failed");
+		close(fd);
+		return false;
+	}
+	
+	if(pid == 0){
+	
+		if(dup2(fd,STDOUT_FILENO) == -1){
+			perror("do_exec_redirect : dup2 Failed to redirect");
+			exit(EXIT_FAILURE);
+		}
+		close(fd);
+		
+		int ret = execv(command[0],command);
+		if(ret == -1){
+			perror("do_exec_redirect : execv Failed");
+			exit(EXIT_FAILURE);
+			}
+	}
+	
+	if(pid > 0){
+			int status;
+			printf("Inside Parent \n");
+			wait(&status);
+			close(fd);
+			if(WIFEXITED(status)){
+				if(WEXITSTATUS(status) == 0){
+					return true;
+				}else{
+					printf("status of waitpid %d \n",WEXITSTATUS(status));
+					return false;
+				}
+			}
 
-    return true;
+		}
+
+    close(fd);
+	return false;
 }
+
