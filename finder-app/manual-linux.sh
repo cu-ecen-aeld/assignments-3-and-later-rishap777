@@ -96,9 +96,11 @@ ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
 # TODO: Add library dependencies to rootfs
 echo "Add dependency" 
-cd "$OUTDIR"
-cp /home/rishap/rishap/Coursera/LinuxSystemProgramming/assignment-1-rishap777/dependency/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib
-cp /home/rishap/rishap/Coursera/LinuxSystemProgramming/assignment-1-rishap777/dependency/libc.so.6 /home/rishap/rishap/Coursera/LinuxSystemProgramming/assignment-1-rishap777/dependency/libm.so.6 /home/rishap/rishap/Coursera/LinuxSystemProgramming/assignment-1-rishap777/dependency/libresolv.so.2 ${OUTDIR}/rootfs/lib64
+cd "$DEPENDENCY"
+pwd
+ls
+cp ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib
+cp libc.so.6 libm.so.6 libresolv.so.2 ${OUTDIR}/rootfs/lib64
 
 # TODO: Make device nodes
 cd "$OUTDIR/rootfs"
