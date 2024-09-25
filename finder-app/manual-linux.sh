@@ -99,8 +99,9 @@ echo "Add dependency"
 cd "$FINDER_APP_DIR"
 pwd
 ls
-cp ld-linux-aarch64.so.1 "$OUTDIR"/rootfs/lib
-cp libc.so.6 libm.so.6 libresolv.so.2 "$OUTDIR"/rootfs/lib64
+cp "ld-linux-aarch64.so.1" "$OUTDIR/rootfs/lib"
+echo " ld-linux-aarch64.so.1 copy is done "
+cp "libc.so.6" "libm.so.6" "libresolv.so.2" "$OUTDIR/rootfs/lib64"
 
 # TODO: Make device nodes
 cd "$OUTDIR/rootfs"
@@ -117,4 +118,12 @@ cp writer "$OUTDIR"/rootfs/home
 cp finder.sh conf/username.txt conf/assignment.txt finder-test.sh autorun-qemu.sh "$OUTDIR"/rootfs/home
 cd "$OUTDIR"/rootfs/home
 mkdir conf
-cp +\][poiuytre
+cp "$FINDER_APP_DIR"/conf/username.txt "$FINDER_APP_DIR"/conf/assignment.txt "$OUTDIR"/rootfs/home/conf
+
+# TODO: Chown the root directory
+echo "Creating InitRamFs"
+cd "$OUTDIR"/rootfs
+# TODO: Create initramfs.cpio.gz
+find . | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
+cd "$OUTDIR"
+gzip -f initramfs.cpio
