@@ -96,7 +96,7 @@ ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
 # TODO: Add library dependencies to rootfs
 echo "Add dependency" 
-cd "$DEPENDENCY"
+cd "$FINDER_APP_DIR"
 pwd
 ls
 cp ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib
@@ -117,13 +117,4 @@ cp writer "$OUTDIR"/rootfs/home
 cp finder.sh conf/username.txt conf/assignment.txt finder-test.sh autorun-qemu.sh "$OUTDIR"/rootfs/home
 cd "$OUTDIR"/rootfs/home
 mkdir conf
-cp "$FINDER_APP_DIR"/conf/username.txt "$FINDER_APP_DIR"/conf/assignment.txt "$OUTDIR"/rootfs/home/conf
-
-# TODO: Chown the root directory
-echo "Creating InitRamFs"
-cd "$OUTDIR"/rootfs
-# TODO: Create initramfs.cpio.gz
-find . | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
-cd "$OUTDIR"
-gzip -f initramfs.cpio
-
+cp +\][poiuytre
