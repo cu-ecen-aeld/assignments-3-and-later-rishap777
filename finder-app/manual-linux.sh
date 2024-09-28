@@ -6,8 +6,13 @@ set -e
 set -u
 
 OUTDIR=/tmp/aeld
+<<<<<<< HEAD
 KERNEL_REPO=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 KERNEL_VERSION=v5.1.10
+=======
+KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+KERNEL_VERSION=v5.15.163
+>>>>>>> assignments-base/assignment4
 BUSYBOX_VERSION=1_33_1
 FINDER_APP_DIR=$(realpath $(dirname $0))
 ARCH=arm64
@@ -99,9 +104,9 @@ echo "Add dependency"
 cd "$FINDER_APP_DIR"
 pwd
 ls
-cp "ld-linux-aarch64.so.1" "$OUTDIR/rootfs/lib"
-echo " ld-linux-aarch64.so.1 copy is done "
-cp "libc.so.6" "libm.so.6" "libresolv.so.2" "$OUTDIR/rootfs/lib64"
+#cp "ld-linux-aarch64.so.1" "$OUTDIR/rootfs/lib"
+#echo " ld-linux-aarch64.so.1 copy is done "
+#cp "libc.so.6" "libm.so.6" "libresolv.so.2" "$OUTDIR/rootfs/lib64"
 
 # TODO: Make device nodes
 cd "$OUTDIR/rootfs"
