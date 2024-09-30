@@ -99,9 +99,9 @@ echo "Add dependency"
 cd "$FINDER_APP_DIR"
 pwd
 ls
-#cp "ld-linux-aarch64.so.1" "$OUTDIR/rootfs/lib"
-#echo " ld-linux-aarch64.so.1 copy is done "
-#cp "libc.so.6" "libm.so.6" "libresolv.so.2" "$OUTDIR/rootfs/lib64"
+cp "ld-linux-aarch64.so.1" "$OUTDIR/rootfs/lib"
+echo " ld-linux-aarch64.so.1 copy is done "
+cp "libc.so.6" "libm.so.6" "libresolv.so.2" "$OUTDIR/rootfs/lib64"
 
 # TODO: Make device nodes
 cd "$OUTDIR/rootfs"
