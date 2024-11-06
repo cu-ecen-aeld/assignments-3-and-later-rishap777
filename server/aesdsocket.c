@@ -126,7 +126,6 @@ int main(int argc, char * argv[]){
 	struct data *head = NULL;
 	
 	char *temp=NULL;
-	int i=0;
 	
 	struct sockaddr_in caddr;
 	socklen_t len;
@@ -228,29 +227,8 @@ int main(int argc, char * argv[]){
 	}//while (1)
 /*** Returning the full Content of the file to the client socket  and closing it***/
 
-printf("Returning the full content of the file to the client \n");
-	//fptr=NULL;
-	//fptr = fopen("/var/tmp/aesdsocketdata","r");
-/*
-if(fseek(fptr,0L, SEEK_SET) == 0){
-	printf("File Position Set to start \n");
-}
-	
-	char *s = (char *)malloc(128);
-	
-	while(fgets(s,128,fptr) != NULL){
-		printf("%s\n",s);
-		send(csockfd,&s,128,0);
-	}
-	
-/*
-	do {
-		s = fgets(fptr);
-		printf("%c\n",s);
-		//send(csockfd,&s,1,0);
-	}
-	while(s != EOF);
-*/
+	printf("Returning the full content of the file to the client \n")
+
 	
 	printf("Exiting the code from Main \n");
 			

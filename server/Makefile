@@ -1,4 +1,5 @@
-cc = $(CROSS_COMPILE)gcc
+ARCH=AArch64
+cc=$(CROSS_COMPILE)gcc
 
 all: aesdsocket.o
 
