@@ -227,7 +227,7 @@ int main(int argc, char * argv[]){
 	}//while (1)
 /*** Returning the full Content of the file to the client socket  and closing it***/
 
-	printf("Returning the full content of the file to the client \n")
+	printf("Returning the full content of the file to the client \n");
 
 	
 	printf("Exiting the code from Main \n");
