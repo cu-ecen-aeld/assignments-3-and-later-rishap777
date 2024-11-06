@@ -1,10 +1,13 @@
 
+cc  = $(CROSS_COMPILE)gcc
+
+
 all: aesdsocket
 
 default: aesdsocket
 
 aesdsocket: aesdsocket.c
-	gcc aesdsocket.c -o aesdsocket
+	$(cc) aesdsocket.c -o aesdsocket
 
 
 clean:
