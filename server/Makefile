@@ -1,4 +1,5 @@
-ARCH=AArch64
+ARCH=arm64
+CROSS_COMPILE=aarch64-none-linux-gnu-
 cc=$(CROSS_COMPILE)gcc
 
 all: aesdsocket.o
