@@ -193,9 +193,9 @@ int main(int argc, char * argv[]){
 				memset(tempdata,'\0',128);
 				strncpy(tempdata,msgbuf,len);
 				printf("tempdata = %s",tempdata);
-				//fprintf(fptr,"%s",tempdata);
-				fwrite(tempdata,1,len,fptr);
-				//fflush(fptr);
+				fprintf(fptr,"%s",tempdata);
+				//fwrite(tempdata,1,len,fptr);
+				fflush(fptr);
 				if(fseek(fptr,0L,SEEK_SET) == 0){
 					printf("File Position Set to start \n");
 				}
