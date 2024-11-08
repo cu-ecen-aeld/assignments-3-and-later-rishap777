@@ -196,16 +196,42 @@ int main(int argc, char * argv[]){
 				fprintf(fptr,"%s",tempdata);
 				//fwrite(tempdata,1,len,fptr);
 				fflush(fptr);
+#if 1				
 				if(fseek(fptr,0L,SEEK_SET) == 0){
 					printf("File Position Set to start \n");
 				}
 		
-				char s = fgetc(fptr);;
+				int s = fgetc(fptr);;
 				while(s != EOF){
-					printf("%c",s);
+					printf("%c",(unsigned char)s);
 					send(csockfd,&s,1,0);
 					s = fgetc(fptr);
 				}
+#endif
+
+#if 0
+				printf("Opening File for reading \n");	
+	
+				FILE *ftmp = fopen("/var/tmp/aesdsocketdata","r");
+	
+				if(ftmp == NULL){
+					perror("Opening File /var/tmp/aesdsocketdata FAILED \n");
+					syslog(LOG_ERR,"Accepting client Failed");
+					return -1;
+				}
+				printf("File Opened \n");
+
+				char s = fgetc(ftmp);
+				while(feof(ftmp)){
+					printf("%c",s);
+					send(csockfd,&s,1,0);
+					s = fgetc(ftmp);
+				}
+				fclose(ftmp);
+				
+#endif
+
+
 				
 				if((ret-(temp-msgbuf)+1) > 0){
 					head = malloc(sizeof(struct data));
