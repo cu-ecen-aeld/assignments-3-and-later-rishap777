@@ -1,6 +1,11 @@
-ARCH=AArch64
+ARCH?=aarch64
 
-cc=$(CROSS_COMPILE)gcc
+ifeq ($(ARCH), aarch64)
+	cc=aarch64-none-linux-gnu-gcc
+else
+	cc=gcc
+endif
+
 
 all: aesdsocket.o
 
