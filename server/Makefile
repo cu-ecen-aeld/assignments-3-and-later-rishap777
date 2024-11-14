@@ -1,7 +1,7 @@
-ARCH?=aarch64
+ARCH?=x86_64
 arc := $(shell arch)
 ifeq ($(ARCH), aarch64)
-	cc=/__w/assignment-4-rishap777/assignment-4-rishap777/buildroot/output/host/bin/aarch64-buildroot-linux-gnu-gcc
+	cc=$(CROSS_COMPILE)
 else
 	cc=gcc
 endif
