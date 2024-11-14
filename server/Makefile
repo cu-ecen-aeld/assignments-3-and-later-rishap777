@@ -1,8 +1,11 @@
 ARCH?=aarch64
-
+arc := $(shell arch)
+echo arc
 ifeq ($(ARCH), aarch64)
-	cc=aarch64-none-linux-gnu-gcc
+	echo "$arc"
+	cc=/__w/assignment-4-rishap777/assignment-4-rishap777/buildroot/output/host/bin/aarch64-buildroot-linux-gnu-gcc
 else
+	echo "$arc"
 	cc=gcc
 endif
 
