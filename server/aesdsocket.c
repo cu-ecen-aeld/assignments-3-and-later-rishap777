@@ -40,10 +40,10 @@ SLIST_HEAD(slisthead,threadinfo);
 static struct slisthead head;
 
 static int ssockfd;
-static struct addrinfo *serverInfo;
+//static struct addrinfo *serverInfo;
 //static FILE *fptrw=NULL;
 //static FILE *fptrr=NULL;
-static pthread_mutex_t filewlock,filerlock;
+static pthread_mutex_t filewlock;
 static volatile int signal_flag = 0;
 static int fileSize = 0;
 
@@ -107,10 +107,9 @@ void *thread_function(void *);
 //******************MMAAAAAAAAIIIIIIIIIIIIIIINNNNNNNNNNNNNNN*********************************************
 int main(int argc, char * argv[]){	
 
-	int ret;
-	struct addrinfo hints;
+	//struct addrinfo hints;
 	struct threadinfo *t1;
-	struct sockaddr_in servaddr, cli; 
+	struct sockaddr_in servaddr; 
 	
 	SLIST_INIT(&head);
 	
@@ -280,7 +279,6 @@ void *thread_function(void *args){
 		//int len=0;
 		int ret=0;
 		static int count1=0;
-		struct data *head = NULL;
 		char *temp=NULL;
 		
 		volatile int csockfd =0;
@@ -345,6 +343,7 @@ int writeFile(char *wbuff, int len){
 	fclose(fptrw);
 	pthread_mutex_unlock(&filewlock);  //unlock
 	
+	return 0;
 }
 
 int sendToClient(int csockfd){
@@ -381,4 +380,6 @@ int sendToClient(int csockfd){
 		fclose(fptrw);
 		pthread_mutex_unlock(&filewlock);  //unlock
 		free(filebuf);
+		
+		return 0;
 }

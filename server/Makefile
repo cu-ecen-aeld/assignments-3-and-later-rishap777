@@ -1,20 +1,19 @@
-ARCH?=x86_64
-arc := $(shell arch)
-ifeq ($(ARCH), aarch64)
-	cc=$(CROSS_COMPILE)
-else
-	cc=gcc
-endif
+CC ?= $(CROSS_COMPILE)gcc
 
+CFLAGS ?= -g -Wall -Werror
+
+TARGET ?= aesdsocket
+
+LDFLAGS ?= -lpthread -lrt
 
 all: aesdsocket.o
 
 default: aesdsocket.o
 
 aesdsocket.o: aesdsocket.c
-	echo $(arc)
-	$(cc) aesdsocket.c -o aesdsocket
 
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+	
 clean:
 	rm -f aesdsocket
 	
