@@ -6,12 +6,9 @@ TARGET ?= aesdsocket
 
 LDFLAGS ?= -lpthread -lrt
 
-all: aesdsocket.o
-
-default: aesdsocket.o
-
-aesdsocket.o: aesdsocket.c
-
+all:aesdsocket
+default:aesdsocket
+aesdsocket:aesdsocket.c
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 	
 clean:
