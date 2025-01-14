@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 case "$1" in
 	start)
@@ -12,7 +12,4 @@ case "$1" in
 	*)
 	echo "Usage: $0 {start|stop}"
 esac
-
-exit 0
-
 
