@@ -1,4 +1,4 @@
-CC ?= $(CROSS_COMPILER)gcc
+#CC ?= $(CROSS_COMPILE)gcc
 
 CFLAGS ?= -g -Wall -Werror
 
