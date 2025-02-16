@@ -2,9 +2,9 @@ CC ?= aarch64-poky-linux-gcc
 
 #CFLAGS ?= -g -Wall -Werror
 
-TARGET ?= aesdsocket
+#TARGET ?= aesdsocket
 
-LDFLAGS ?= -lpthread -lrt
+#LDFLAGS ?= -lpthread -lrt
 
 all:aesdsocket
 default:aesdsocket
