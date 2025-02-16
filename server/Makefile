@@ -1,4 +1,4 @@
-CC ?= aarch64-poky-linux-gcc
+CC ?= aarch64-none-linux-gnu-gcc
 
 #CFLAGS ?= -g -Wall -Werror
 
