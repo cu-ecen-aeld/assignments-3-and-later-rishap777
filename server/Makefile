@@ -1,4 +1,4 @@
-CC =/home/rishap/Downloads/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc
+CC=/_work/assignment-6-rishap777/assignment-6-rishap777/build/tmp/sysroots-components/x86_64/gcc-cross-aarch64/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc
 
 #CFLAGS ?= -g -Wall -Werror
 
