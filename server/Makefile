@@ -1,4 +1,4 @@
-CC ?= $(CROSS_COMPILE)gcc
+CC ?= aarch64-poky-linux-gcc
 
 #CFLAGS ?= -g -Wall -Werror
 
